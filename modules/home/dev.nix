@@ -82,6 +82,8 @@
 
     maven
     tree
+
+    wrangler
   ];
 
   programs.direnv.enable = true;
