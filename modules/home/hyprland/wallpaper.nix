@@ -1,7 +1,10 @@
-{ pkgs, hostName, ... }:
-
-let
-  wallpaperDir = ../../../assets/wallpapers + "/${hostName}";
+{
+  config,
+  pkgs,
+  hostName,
+  ...
+}: let
+  wallpaperDir = "${config.home.homeDirectory}/.dotfiles/assets/wallpapers/${hostName}";
 
   wallpaperControl = pkgs.writeShellApplication {
     name = "wallpaper-control";
@@ -30,7 +33,7 @@ let
             -o -iname '*.png' \
             -o -iname '*.webp' \
           \) \
-          ! -name 'lock.jpg' \
+          ! -name 'lock.*' \
           | sort
       )
 
@@ -131,8 +134,7 @@ let
       printf '%s\n' "''${target##*/}" > "$state_file"
     '';
   };
-in
-{
+in {
   home.packages = [
     pkgs.hyprpaper
     wallpaperControl

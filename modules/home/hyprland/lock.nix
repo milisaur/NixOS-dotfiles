@@ -1,9 +1,14 @@
 {
+  config,
   pkgs,
   hostName,
   ...
 }: let
-  wallpaper = ../../../assets/wallpapers + "/${hostName}/lock.png";
+  extension =
+    if hostName == "ankylosaurus"
+    then "jpg"
+    else "png";
+  wallpaper = "${config.home.homeDirectory}/.dotfiles/assets/wallpapers/${hostName}/lock.${extension}";
 in {
   home.packages = with pkgs; [
     hyprlock
