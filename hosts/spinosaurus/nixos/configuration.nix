@@ -10,6 +10,7 @@
     ../../../modules/system/nvidia-prime.nix
     ../../../modules/system/laptop.nix
     ../../../modules/system/gigabyte-keyboard.nix
+    ../../../modules/system/llm
   ];
 
   networking.hostName = "spinosaurus";
