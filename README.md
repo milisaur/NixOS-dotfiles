@@ -136,7 +136,7 @@ Requirements:
 Clone the repository:
 
 ```bash
-git clone git@github.com:milisaur/dotfiles.git ~/.dotfiles
+git clone git@github.com:milisaur/NixOS-dotfiles.git ~/.dotfiles
 cd ~/.dotfiles/
 ```
 
