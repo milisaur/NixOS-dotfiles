@@ -6,12 +6,10 @@
   ...
 }: {
   home.packages = with pkgs; [
-    kitty
     git
     git-crypt
     gnupg
     nano
-    zsh
     wev
 
     gh
@@ -20,15 +18,10 @@
     parted
 
     yazi
-    rofi
-    papirus-icon-theme
-    mako
-    networkmanagerapplet
 
     gnome-keyring
     seahorse
 
-    pavucontrol
     libnotify
 
     curl
@@ -69,8 +62,6 @@
     hades
     mars-mips
 
-    direnv
-    nix-direnv
     alejandra
 
     playerctl

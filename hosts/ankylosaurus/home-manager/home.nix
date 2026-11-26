@@ -26,7 +26,6 @@
     ../../../modules/home/quarto.nix
     ../../../modules/home/android.nix
     ../../../modules/home/java.nix
-    ../../../modules/home/editing.nix
     ./robocode.nix
     ../../../modules/home/writing.nix
     ../../../modules/home/joplin.nix

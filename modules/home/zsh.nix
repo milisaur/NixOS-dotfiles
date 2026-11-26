@@ -93,8 +93,4 @@
       fi
     '';
   };
-
-  home.packages = with pkgs; [
-    fzf
-  ];
 }

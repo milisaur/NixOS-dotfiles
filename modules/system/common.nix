@@ -1,8 +1,6 @@
 {
-  config,
   pkgs,
   pkgs-unstable,
-  lib,
   inputs,
   ...
 }: {
@@ -23,7 +21,6 @@
   programs.nix-ld.enable = true;
 
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = false;
   services.greetd = {
     enable = true;
     settings = {
@@ -170,12 +167,5 @@
     inputs.readest.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
-  nix.settings = {
-    substituters = ["https://readest.cachix.org"];
-
-    trusted-public-keys = [
-      "readest.cachix.org-1:KvKAePcZZCZB8ytFIAOGdgN3VRdmFHGRMHqMVckbt5c="
-    ];
-  };
   system.stateVersion = "25.11";
 }
