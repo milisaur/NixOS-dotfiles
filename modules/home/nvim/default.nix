@@ -8,6 +8,7 @@
     ./completion.nix
     ./java.nix
     ./dap.nix
+    ./rust.nix
   ];
 
   programs.nixvim = {
