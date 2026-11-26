@@ -5,7 +5,7 @@
     ../../../modules/home/gpg.nix
     ../../../modules/home/r.nix
     ../../../modules/home/zsh.nix
-    ../../../modules/home/nvim.nix
+    ../../../modules/home/nvim
     ../../../modules/home/kitty.nix
     ../../../modules/home/hyprland/base.nix
     ../../../modules/home/hyprland/spinosaurus.nix

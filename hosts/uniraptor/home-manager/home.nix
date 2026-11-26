@@ -16,7 +16,7 @@
     ../../../modules/home/gpg.nix
     ../../../modules/home/dev.nix
     ../../../modules/home/r.nix
-    ../../../modules/home/nvim.nix
+    ../../../modules/home/nvim
     ../../../modules/home/yazi/yazi.nix
     ../../../modules/home/quarto.nix
     ../../../modules/home/android.nix
