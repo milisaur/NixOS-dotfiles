@@ -139,7 +139,7 @@ in {
        #clock,
        #network,
        #pulseaudio,
-       #custom-nixos-generation
+       #custom-nixos-generation,
        #cpu,
        #memory,
        #battery,

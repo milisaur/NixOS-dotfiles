@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   rPkgs = with pkgs.rPackages; [
     languageserver
     lintr
@@ -16,15 +12,9 @@
   myRStudio = pkgs.rstudioWrapper.override {
     packages = rPkgs;
   };
-
-  rSystemLibs = with pkgs; [];
 in {
-  home.packages = with pkgs; [
+  home.packages = [
     myR
     myRStudio
   ];
-
-  home.sessionVariables = {
-    LD_LIBRARY_PATH = lib.makeLibraryPath rSystemLibs;
-  };
 }

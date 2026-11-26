@@ -74,6 +74,8 @@
         ];
       };
   in {
+    formatter.${system} = pkgs.alejandra;
+
     nixosConfigurations = {
       ankylosaurus = mkHost "ankylosaurus";
       spinosaurus = mkHost "spinosaurus";

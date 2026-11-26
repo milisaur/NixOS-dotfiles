@@ -22,55 +22,51 @@ Each machine has its own configuration while sharing common modules where approp
 
 ## Structure
 ```text
-
 ├── assets
-│   └── wallpapers
-│       └── main.jpg
+│   ├── wallpapers/        (not tracked, see Notes)
+│   ├── ASM-Simulator.jar
+│   └── Hades_Editor_und_Simulator.jar
 ├── flake.lock
 ├── flake.nix
 ├── hosts
-│   ├── ankylosaurus
-│   │   ├── home-manager/
-│   │   ├── hypr/
-│   │   ├── mako/
-│   │   ├── nixos/
-│   │   └── waybar/
-│   ├── spinosaurus
-│   │   ├── home-manager/
-│   │   └── nixos/
-│   └── uniraptor
-│       ├── home-manager/
-│       └── nixos/
+│   ├── ankylosaurus
+│   │   ├── home-manager/
+│   │   └── nixos/
+│   ├── spinosaurus
+│   │   ├── home-manager/
+│   │   └── nixos/
+│   └── uniraptor
+│       ├── home-manager/
+│       └── nixos/
 ├── modules
-│   ├── common.nix
-│   └── home
-│       ├── dev.nix
-│       ├── fonts.nix
-│       ├── gaming.nix
-│       ├── gpg.nix
-│       ├── hyprland/
-│       ├── kitty.nix
-│       ├── mako.nix
-│       ├── nvim.nix
-│       ├── r.nix
-│       ├── rofi/
-│       ├── rofi.nix
-│       ├── waybar.nix
-│       ├── yazi/
-│       └── zsh.nix
-├── README.md
-└── scripts
-    ├── apply-system.sh
-    ├── apply-users.sh
-    ├── update-system.sh
-    └── update-user.sh
+│   ├── home
+│   │   ├── hyprland/
+│   │   ├── joplin/
+│   │   ├── rofi/
+│   │   ├── waybar/
+│   │   ├── yazi/
+│   │   ├── zettlr/
+│   │   └── *.nix
+│   └── system
+│       ├── llm/
+│       ├── common.nix
+│       ├── desktop.nix
+│       ├── workstation.nix
+│       └── *.nix
+├── pkgs
+│   ├── asm-simulator.nix
+│   ├── hades.nix
+│   └── mars-mips.nix
+├── LICENSE
+└── README.md
 ```
 
-## Structure
+## Layout
 
-- **hosts/** – machine-specific NixOS configurations  
-- **home/** – Home Manager user configuration  
-- **modules/** – shared configuration (in progress)  
+- **hosts/** – machine-specific NixOS and Home Manager configurations  
+- **modules/system/** – shared NixOS modules  
+- **modules/home/** – shared Home Manager modules  
+- **pkgs/** – custom packages (MARS, ASM-Simulator, HADES)  
 - **flake.nix** – entry point for building systems 
 
 ---
@@ -114,7 +110,7 @@ User-level configuration managed via Home Manager.
 - Multi-host setup  
 - Wayland environment (Hyprland)  
 - Waybar, Rofi, Kitty, Mako  
-- Delelopment + gaming environments
+- Development + gaming environments
 
 ---
 
@@ -129,7 +125,7 @@ User-level configuration managed via Home Manager.
 ## Installation
 
 Requirements:
-- NixOs with flakes enabled in ` configuration.nix ` [nix.settings.experimental-features = ["nix-command" "flakes"];]
+- NixOS with flakes enabled in ` configuration.nix ` [nix.settings.experimental-features = ["nix-command" "flakes"];]
 - Git
 - Internet connection
 
@@ -173,9 +169,11 @@ sudo nixos-rebuild switch --flake .#<hostname>
 - hardware-configuration.nix is specific to each machine
 - This setup is tailored to my hardware and may require adjustments on other systems
 - Shared modules are gradually being introduced
+- Wallpapers are not tracked; put them in `assets/wallpapers/<hostname>/` (lock screen: `lock.png`, `lock.jpg` on ankylosaurus)
+- Format with `nix fmt`
 
 ---
 
 ## License
 
-This repository is provided as-is for personal use and reference.
+MIT, see [LICENSE](LICENSE).

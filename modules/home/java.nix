@@ -1,90 +1,38 @@
 {pkgs, ...}: let
-  java8 = pkgs.writeShellScriptBin "java8" ''
-    exec ${pkgs.jdk8}/bin/java "$@"
-  '';
+  jdks = {
+    "8" = pkgs.jdk8;
+    "21" = pkgs.jdk21;
+    "25" = pkgs.jdk25;
+  };
 
-  javac8 = pkgs.writeShellScriptBin "javac8" ''
-    exec ${pkgs.jdk8}/bin/javac "$@"
-  '';
+  tool = version: jdk: name:
+    pkgs.writeShellScriptBin "${name}${version}" ''
+      exec ${jdk}/bin/${name} "$@"
+    '';
 
-  jshell8 = pkgs.writeShellScriptBin "jshell8" ''
-    exec ${pkgs.jdk8}/bin/jshell "$@"
-  '';
-  java21 = pkgs.writeShellScriptBin "java21" ''
-    exec ${pkgs.jdk21}/bin/java "$@"
-  '';
+  tools = version: jdk:
+    map (tool version jdk) (
+      ["java" "javac"]
+      ++ pkgs.lib.optional (version != "8") "jshell"
+    );
 
-  javac21 = pkgs.writeShellScriptBin "javac21" ''
-    exec ${pkgs.jdk21}/bin/javac "$@"
-  '';
+  shell = version: jdk:
+    pkgs.writeShellScriptBin "jdk${version}" ''
+      export JAVA_HOME="${jdk}"
+      export PATH="$JAVA_HOME/bin:$PATH"
 
-  jshell21 = pkgs.writeShellScriptBin "jshell21" ''
-    exec ${pkgs.jdk21}/bin/jshell "$@"
-  '';
+      echo "Java ${version} environment"
+      java -version
 
-  java25 = pkgs.writeShellScriptBin "java25" ''
-    exec ${pkgs.jdk25}/bin/java "$@"
-  '';
+      exec ${pkgs.zsh}/bin/zsh
+    '';
 
-  javac25 = pkgs.writeShellScriptBin "javac25" ''
-    exec ${pkgs.jdk25}/bin/javac "$@"
-  '';
-
-  jshell25 = pkgs.writeShellScriptBin "jshell25" ''
-    exec ${pkgs.jdk25}/bin/jshell "$@"
-  '';
-
-  jdk8Shell = pkgs.writeShellScriptBin "jdk8" ''
-    export JAVA_HOME="${pkgs.jdk8}"
-    export PATH="$JAVA_HOME/bin:$PATH"
-
-    echo "Java 8 environment"
-    java -version
-
-    exec ${pkgs.zsh}/bin/zsh
-  '';
-
-  jdk21Shell = pkgs.writeShellScriptBin "jdk21" ''
-    export JAVA_HOME="${pkgs.jdk21}"
-    export PATH="$JAVA_HOME/bin:$PATH"
-
-    echo "Java 21 environment"
-    java -version
-
-    exec ${pkgs.zsh}/bin/zsh
-  '';
-
-  jdk25Shell = pkgs.writeShellScriptBin "jdk25" ''
-    export JAVA_HOME="${pkgs.jdk25}"
-    export PATH="$JAVA_HOME/bin:$PATH"
-
-    echo "Java 25 environment"
-    java -version
-
-    exec ${pkgs.zsh}/bin/zsh
-  '';
+  perVersion = f: pkgs.lib.flatten (pkgs.lib.mapAttrsToList f jdks);
 in {
-  home.packages = [
-    # Default Java
-    pkgs.jdk25
-
-    # Explicit version commands
-    java8
-    javac8
-    jshell8
-
-    java21
-    javac21
-    jshell21
-
-    java25
-    javac25
-    jshell25
-
-    # Full version-specific environments
-    jdk21Shell
-    jdk25Shell
-  ];
+  home.packages =
+    [pkgs.jdk25]
+    ++ perVersion tools
+    ++ perVersion (version: jdk: [(shell version jdk)]);
 
   home.sessionVariables = {
     JAVA_HOME = "${pkgs.jdk25}";
