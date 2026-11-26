@@ -6,79 +6,97 @@
   ...
 }: {
   home.packages = with pkgs; [
+    # Git
     git
     git-crypt
-    gnupg
-    nano
-    wev
-
     gh
-    bind
-    usbutils
-    parted
+    lazygit
 
-    yazi
-
+    # Security
+    gnupg
     gnome-keyring
     seahorse
 
-    libnotify
-
-    curl
-    wget
-    unzip
-
-    file
-    jq
-    zoxide
-    ffmpeg
-    poppler
-    imagemagick
-    ueberzugpp
-    imv
-
-    ripgrep
-    fd
-    fzf
+    # CLI tools
     bat
     btop
-    lazygit
+    fd
+    file
+    fzf
+    jq
+    nano
+    ripgrep
+    tree
+    yazi
+    zoxide
 
-    texliveFull
-    texstudio
+    # Network
+    bind
+    curl
+    wget
 
+    # System tools
+    brightnessctl
+    libnotify
+    parted
+    playerctl
+    usbutils
+    wev
+
+    # Archives
+    unzip
+    zip
+
+    # Media
+    ffmpeg
+    imagemagick
+    imv
+    poppler
+    ueberzugpp
+
+    # Nix
+    alejandra
+
+    # Rust
+    rustc
+    cargo
+    rustfmt
+    clippy
+
+    # Go
     go
     gopls
     gotools
     golangci-lint
 
+    # Python
     python3
     pyright
 
-    nodejs_24
-
+    # Java
     jdk25
+    maven
+
+    # Web development
+    nodejs_24
+    wrangler
+
+    # Computer science
     asm-simulator
     hades
     mars-mips
 
-    alejandra
-
-    playerctl
-    brightnessctl
-
+    # Studying and writing
     anki
+    texliveFull
+    texstudio
 
+    # Compatibility
     steam-run
-
-    maven
-    tree
-
-    zip
-
-    wrangler
   ];
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 }
