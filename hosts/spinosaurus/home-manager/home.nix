@@ -30,6 +30,8 @@
     ../../../modules/home/joplin.nix
     ../../../modules/home/zettlr.nix
     ../../../modules/home/obs.nix
+    ../../../modules/home/obs.nix
+    ../../../modules/home/monospace.nix
   ];
 
   home.username = "mili";

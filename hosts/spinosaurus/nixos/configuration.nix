@@ -9,6 +9,8 @@
     ../../../modules/system/laptop.nix
     ../../../modules/system/gigabyte-keyboard.nix
     ../../../modules/system/llm
+    ../../../modules/system/llm
+    ../../../modules/system/monospace.nix
   ];
 
   networking.hostName = "spinosaurus";
