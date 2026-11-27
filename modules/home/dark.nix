@@ -1,6 +1,29 @@
 {pkgs, ...}: let
   p = import ./palette.nix;
 
+  qtRow = colors: builtins.concatStringsSep ", " colors;
+
+  qtPalette = pkgs.writeText "qt-palette.conf" ''
+    [ColorScheme]
+    active_colors=${qtRow [p.text p.surface p.surfaceBright p.overlay p.bg p.overlay p.text p.textBright p.text p.surface p.bg "#000000" p.accent p.bg p.accent p.accentDark p.overlay p.bg p.surface p.text p.subtextDim]}
+    inactive_colors=${qtRow [p.text p.surface p.surfaceBright p.overlay p.bg p.overlay p.text p.textBright p.text p.surface p.bg "#000000" p.accentDark p.bg p.accent p.accentDark p.overlay p.bg p.surface p.text p.subtextDim]}
+    disabled_colors=${qtRow [p.muted p.surface p.surfaceBright p.overlay p.bg p.overlay p.muted p.subtext p.muted p.surface p.bg "#000000" p.overlay p.subtextDim p.muted p.muted p.overlay p.bg p.surface p.subtextDim p.mutedDark]}
+  '';
+
+  qtct = {
+    Appearance = {
+      style = "Fusion";
+      custom_palette = true;
+      color_scheme_path = "${qtPalette}";
+      icon_theme = "Papirus-Dark";
+      standard_dialogs = "xdgdesktopportal";
+    };
+    Fonts = {
+      general = ''"${p.font},11"'';
+      fixed = ''"${p.font},11"'';
+    };
+  };
+
   colors = ''
     @define-color accent_color ${p.accent};
     @define-color accent_bg_color ${p.accent};
@@ -122,15 +145,8 @@ in {
 
   qt = {
     enable = true;
-
-    platformTheme.name = "gtk3";
-
-    style = {
-      name = "adwaita-dark";
-      package = [
-        pkgs.adwaita-qt
-        pkgs.adwaita-qt6
-      ];
-    };
+    platformTheme.name = "qtct";
+    qt5ctSettings = qtct;
+    qt6ctSettings = qtct;
   };
 }
