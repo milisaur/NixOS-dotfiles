@@ -7,31 +7,22 @@
   user = "mili";
 
   applyLaptopPower = pkgs.writeShellScriptBin "apply-laptop-power" ''
-    set -euo pipefail
+    set -u
 
-    sleep 3
+    STATE="battery"
+    for supply in /sys/class/power_supply/*; do
+      if [ "$(${pkgs.coreutils}/bin/cat "$supply/type" 2>/dev/null)" = "Mains" ] && [ "$(${pkgs.coreutils}/bin/cat "$supply/online" 2>/dev/null)" = "1" ]; then
+        STATE="ac"
+      fi
+    done
 
-    BAT="$(${pkgs.upower}/bin/upower -e | ${pkgs.gnugrep}/bin/grep BAT | ${pkgs.coreutils}/bin/head -1)"
-
-    STATE="$(${pkgs.upower}/bin/upower -i "$BAT" \
-      | ${pkgs.gnugrep}/bin/grep "state:" \
-      | ${pkgs.coreutils}/bin/cut -d: -f2 \
-      | ${pkgs.coreutils}/bin/tr -d ' ')"
-
-    STATE_FILE="/tmp/laptop-power-state-system"
-
-    OLD_STATE=""
-    if [ -f "$STATE_FILE" ]; then
-      OLD_STATE="$(${pkgs.coreutils}/bin/cat "$STATE_FILE")"
-    fi
-
-    if [ "$STATE" = "$OLD_STATE" ]; then
+    STATE_FILE="/run/laptop-power-state"
+    if [ "$(${pkgs.coreutils}/bin/cat "$STATE_FILE" 2>/dev/null)" = "$STATE" ]; then
       exit 0
     fi
-
     echo "$STATE" > "$STATE_FILE"
 
-    if [ "$STATE" = "discharging" ]; then
+    if [ "$STATE" = "battery" ]; then
       ${pkgs.brightnessctl}/bin/brightnessctl set 50% || true
     else
       ${pkgs.brightnessctl}/bin/brightnessctl set 80% || true
@@ -97,6 +88,7 @@ in {
 
   systemd.services.laptop-power-apply = {
     description = "Apply system laptop AC/battery power profile";
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${applyLaptopPower}/bin/apply-laptop-power";
