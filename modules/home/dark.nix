@@ -34,7 +34,7 @@
     @define-color dialog_fg_color ${p.text};
     @define-color popover_bg_color ${p.surface};
     @define-color popover_fg_color ${p.text};
-        @define-color theme_bg_color ${p.bg};
+    @define-color theme_bg_color ${p.bg};
     @define-color theme_fg_color ${p.text};
     @define-color theme_base_color ${p.surface};
     @define-color theme_text_color ${p.text};
@@ -108,6 +108,17 @@ in {
     gtk4.theme = null;
     gtk4.extraCss = colors + vars;
   };
+
+  xdg.dataFile."themes/adw-gtk3-dark".source = "${pkgs.adw-gtk3}/share/themes/adw-gtk3-dark";
+
+  xdg.configFile."systemd/user/xdg-desktop-portal-gtk.service.d/theme.conf".text = ''
+    [Service]
+    Environment=GTK_THEME=adw-gtk3-dark
+  '';
+
+  wayland.windowManager.hyprland.settings.env = [
+    "GTK_THEME,adw-gtk3-dark"
+  ];
 
   qt = {
     enable = true;
