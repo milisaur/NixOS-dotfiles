@@ -32,6 +32,7 @@
     ../../../modules/home/obs.nix
     ../../../modules/home/obs.nix
     ../../../modules/home/monospace.nix
+    ../../../modules/home/cli-colors.nix
   ];
 
   home.username = "mili";
