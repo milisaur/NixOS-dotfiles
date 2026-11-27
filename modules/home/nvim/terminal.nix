@@ -4,6 +4,13 @@
     viAlias = true;
     vimAlias = true;
 
+    globals.loaded_netrwPlugin = 1;
+
+    plugins.yazi = {
+      enable = true;
+      settings.open_for_directories = true;
+    };
+
     keymaps = [
       {
         mode = "t";
@@ -30,6 +37,19 @@
         mode = "t";
         key = "<C-l>";
         action = "<cmd>wincmd l<CR>";
+      }
+
+      {
+        mode = "n";
+        key = "-";
+        action = "<cmd>Yazi<CR>";
+        options.desc = "Yazi (aktuelle Datei)";
+      }
+      {
+        mode = "n";
+        key = "<leader>-";
+        action = "<cmd>Yazi cwd<CR>";
+        options.desc = "Yazi (Arbeitsverzeichnis)";
       }
     ];
 
