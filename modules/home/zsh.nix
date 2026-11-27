@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  p = import ./palette.nix;
+in {
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
@@ -33,16 +35,16 @@
       autoload -Uz vcs_info
 
       zstyle ':vcs_info:*' enable git
-      zstyle ':vcs_info:git:*' formats ' %F{#a6e3a1} %b%f'
-      zstyle ':vcs_info:git:*' actionformats ' %F{#f9e2af} %b|%a%f'
+      zstyle ':vcs_info:git:*' formats ' %F{${p.cyan}} %b%f'
+      zstyle ':vcs_info:git:*' actionformats ' %F{${p.warning}} %b|%a%f'
 
       precmd() {
         vcs_info
       }
 
       setopt PROMPT_SUBST
-      PROMPT='%F{#a6e3a1}%n@%m%f %F{#89b4fa}%~%f''${vcs_info_msg_0_}
-      %F{#6c7086}❯%f '
+      PROMPT='%F{${p.success}}%n@%m%f %F{${p.accent}}%~%f''${vcs_info_msg_0_}
+      %F{${p.subtext}}❯%f '
 
       # ----- Core Options -----
       setopt AUTO_CD
@@ -61,9 +63,9 @@
       zstyle ':completion:*' menu select
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
       zstyle ':completion:*' verbose yes
-      zstyle ':completion:*:descriptions' format '%F{244}-- %d --%f'
-      zstyle ':completion:*:messages' format '%F{244}-- %d --%f'
-      zstyle ':completion:*:warnings' format '%F{244}No matches found%f'
+      zstyle ':completion:*:descriptions' format '%F{${p.subtext}}-- %d --%f'
+      zstyle ':completion:*:messages' format '%F{${p.subtext}}-- %d --%f'
+      zstyle ':completion:*:warnings' format '%F{${p.subtext}}No matches found%f'
       zstyle ':completion:*' group-name ""
 
       # ----- Keybindings (Standard Emacs) -----
