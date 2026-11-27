@@ -31,21 +31,21 @@ in {
       inactive_tab_background = p.surface;
 
       color0 = p.surface;
-      color8 = "#4a3a3f";
+      color8 = p.surfaceBright;
       color1 = p.critical;
-      color9 = "#ff8078";
+      color9 = p.criticalBright;
       color2 = p.success;
-      color10 = "#c3d082";
+      color10 = p.successBright;
       color3 = p.warning;
-      color11 = "#ffc870";
-      color4 = "#7daea3";
-      color12 = "#9cc4ba";
-      color5 = "#d3869b";
-      color13 = "#e2a3b4";
-      color6 = "#89b482";
-      color14 = "#a6cba0";
+      color11 = p.warningBright;
+      color4 = p.blue;
+      color12 = p.blueBright;
+      color5 = p.magenta;
+      color13 = p.magentaBright;
+      color6 = p.cyan;
+      color14 = p.cyanBright;
       color7 = p.text;
-      color15 = "#fff4ea";
+      color15 = p.textBright;
     };
   };
   xdg.configFile."xfce4/helpers.rc".text = ''
