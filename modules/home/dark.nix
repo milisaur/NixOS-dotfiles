@@ -1,10 +1,77 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  p = import ./palette.nix;
+
+  colors = ''
+    @define-color accent_color ${p.accent};
+    @define-color accent_bg_color ${p.accent};
+    @define-color accent_fg_color ${p.bg};
+    @define-color destructive_color ${p.critical};
+    @define-color destructive_bg_color ${p.critical};
+    @define-color destructive_fg_color ${p.bg};
+    @define-color success_color ${p.success};
+    @define-color success_bg_color ${p.success};
+    @define-color success_fg_color ${p.bg};
+    @define-color warning_color ${p.warning};
+    @define-color warning_bg_color ${p.warning};
+    @define-color warning_fg_color ${p.bg};
+    @define-color error_color ${p.critical};
+    @define-color error_bg_color ${p.critical};
+    @define-color error_fg_color ${p.bg};
+    @define-color window_bg_color ${p.bg};
+    @define-color window_fg_color ${p.text};
+    @define-color view_bg_color ${p.surface};
+    @define-color view_fg_color ${p.text};
+    @define-color headerbar_bg_color ${p.bg};
+    @define-color headerbar_fg_color ${p.text};
+    @define-color headerbar_border_color ${p.overlay};
+    @define-color headerbar_backdrop_color ${p.bg};
+    @define-color sidebar_bg_color ${p.surface};
+    @define-color sidebar_fg_color ${p.text};
+    @define-color sidebar_backdrop_color ${p.surface};
+    @define-color card_bg_color ${p.surface};
+    @define-color card_fg_color ${p.text};
+    @define-color dialog_bg_color ${p.surface};
+    @define-color dialog_fg_color ${p.text};
+    @define-color popover_bg_color ${p.surface};
+    @define-color popover_fg_color ${p.text};
+  '';
+
+  vars = ''
+    :root {
+      --accent-color: ${p.accent};
+      --accent-bg-color: ${p.accent};
+      --accent-fg-color: ${p.bg};
+      --destructive-bg-color: ${p.critical};
+      --destructive-fg-color: ${p.bg};
+      --success-bg-color: ${p.success};
+      --success-fg-color: ${p.bg};
+      --warning-bg-color: ${p.warning};
+      --warning-fg-color: ${p.bg};
+      --error-bg-color: ${p.critical};
+      --error-fg-color: ${p.bg};
+      --window-bg-color: ${p.bg};
+      --window-fg-color: ${p.text};
+      --view-bg-color: ${p.surface};
+      --view-fg-color: ${p.text};
+      --headerbar-bg-color: ${p.bg};
+      --headerbar-fg-color: ${p.text};
+      --sidebar-bg-color: ${p.surface};
+      --sidebar-fg-color: ${p.text};
+      --card-bg-color: ${p.surface};
+      --card-fg-color: ${p.text};
+      --dialog-bg-color: ${p.surface};
+      --dialog-fg-color: ${p.text};
+      --popover-bg-color: ${p.surface};
+      --popover-fg-color: ${p.text};
+    }
+  '';
+in {
   dconf = {
     enable = true;
 
     settings."org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-      gtk-theme = "Adwaita-dark";
+      gtk-theme = "adw-gtk3-dark";
       icon-theme = "Papirus-Dark";
     };
   };
@@ -14,8 +81,8 @@
     colorScheme = "dark";
 
     theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
     };
 
     iconTheme = {
@@ -23,9 +90,12 @@
       package = pkgs.papirus-icon-theme;
     };
 
+    gtk3.extraCss = colors;
+
     # GTK4 verwendet die dunkle Farbpräferenz.
     # Erzwinge kein GTK4-Theme für libadwaita.
     gtk4.theme = null;
+    gtk4.extraCss = colors + vars;
   };
 
   qt = {

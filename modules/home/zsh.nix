@@ -35,15 +35,15 @@ in {
       autoload -Uz vcs_info
 
       zstyle ':vcs_info:*' enable git
-      zstyle ':vcs_info:git:*' formats ' %F{${p.cyan}} %b%f'
-      zstyle ':vcs_info:git:*' actionformats ' %F{${p.warning}} %b|%a%f'
+      zstyle ':vcs_info:git:*' formats ' %F{${p.blue}} %b%f'
+      zstyle ':vcs_info:git:*' actionformats ' %F{${p.warning}} %b|%a%f'
 
       precmd() {
         vcs_info
       }
 
       setopt PROMPT_SUBST
-      PROMPT='%F{${p.success}}%n@%m%f %F{${p.accent}}%~%f''${vcs_info_msg_0_}
+      PROMPT='%F{${p.subtextDim}}%n@%m%f %F{${p.accent}}%~%f''${vcs_info_msg_0_}
       %F{${p.subtext}}❯%f '
 
       # ----- Core Options -----
