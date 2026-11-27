@@ -67,9 +67,7 @@
         settings = {
           size = 50;
           direction = "vertical";
-          open_mapping = {
-            __raw = "'<c-t>'";
-          };
+          open_mapping = "[[<c-\\>]]";
           hide_numbers = true;
           shade_filetypes = {};
           shade_terminals = true;
