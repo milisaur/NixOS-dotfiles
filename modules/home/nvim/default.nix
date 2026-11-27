@@ -11,6 +11,7 @@ in {
     ./java.nix
     ./dap.nix
     ./rust.nix
+    ./terminal.nix
   ];
 
   programs.nixvim = {
