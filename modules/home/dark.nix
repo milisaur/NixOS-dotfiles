@@ -10,6 +10,81 @@
     disabled_colors=${qtRow [p.muted p.surface p.surfaceBright p.overlay p.bg p.overlay p.muted p.subtext p.muted p.surface p.bg "#000000" p.overlay p.subtextDim p.muted p.muted p.overlay p.bg p.surface p.subtextDim p.mutedDark]}
   '';
 
+  kateTheme = builtins.toJSON {
+    metadata = {
+      name = "milisaur";
+      revision = 1;
+    };
+    editor-colors = {
+      BackgroundColor = p.bg;
+      BracketMatching = p.overlay;
+      CodeFolding = p.surface;
+      CurrentLine = p.surface;
+      CurrentLineNumber = p.accent;
+      IconBorder = p.bg;
+      IndentationLine = p.overlay;
+      LineNumbers = p.mutedDark;
+      MarkBookmark = p.blue;
+      MarkBreakpointActive = p.critical;
+      MarkBreakpointDisabled = p.muted;
+      MarkBreakpointReached = p.warning;
+      MarkError = p.critical;
+      MarkExecution = p.success;
+      MarkWarning = p.warning;
+      ModifiedLines = p.warning;
+      ReplaceHighlight = p.success;
+      SavedLines = p.success;
+      SearchHighlight = p.accentDark;
+      Separator = p.overlay;
+      SpellChecking = p.critical;
+      TabMarker = p.mutedDark;
+      TemplateBackground = p.surface;
+      TemplateFocusedPlaceholder = p.accent;
+      TemplatePlaceholder = p.overlay;
+      TemplateReadOnlyPlaceholder = p.surface;
+      TextSelection = p.surfaceBright;
+      WordWrapMarker = p.overlay;
+    };
+    text-styles = let
+      c = color: {
+        text-color = color;
+        selected-text-color = color;
+      };
+    in {
+      Normal = c p.text;
+      Keyword = c p.accent // {bold = true;};
+      ControlFlow = c p.accent;
+      Function = c p.blue;
+      Variable = c p.text;
+      Operator = c p.subtext;
+      BuiltIn = c p.cyan;
+      Extension = c p.blue;
+      Preprocessor = c p.magenta;
+      Attribute = c p.blue;
+      Char = c p.success;
+      SpecialChar = c p.warning;
+      String = c p.success;
+      VerbatimString = c p.success;
+      SpecialString = c p.warning;
+      Import = c p.magenta;
+      DataType = c p.warning;
+      DecVal = c p.magenta;
+      BaseN = c p.magenta;
+      Float = c p.magenta;
+      Constant = c p.magenta;
+      Comment = c p.muted // {italic = true;};
+      Documentation = c p.subtextDim;
+      Annotation = c p.subtext;
+      CommentVar = c p.subtext;
+      RegionMarker = c p.blue;
+      Information = c p.warning;
+      Warning = c p.warning;
+      Alert = c p.critical // {bold = true;};
+      Error = c p.critical // {underline = true;};
+      Others = c p.cyan;
+    };
+  };
+
   qtct = {
     Appearance = {
       style = "Fusion";
@@ -142,6 +217,8 @@ in {
   wayland.windowManager.hyprland.settings.env = [
     "GTK_THEME,adw-gtk3-dark"
   ];
+
+  xdg.dataFile."org.kde.syntax-highlighting/themes/milisaur.theme".text = kateTheme;
 
   qt = {
     enable = true;
