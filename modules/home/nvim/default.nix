@@ -12,6 +12,7 @@ in {
     ./dap.nix
     ./rust.nix
     ./terminal.nix
+    ./brackets.nix
   ];
 
   programs.nixvim = {
@@ -39,23 +40,23 @@ in {
           overlay1 = p.muted;
           overlay2 = p.subtextDim;
 
-          text = p.text;
+          text = p.textBright;
           subtext1 = p.subtext;
           subtext0 = p.subtextDim;
 
-          blue = p.accent;
-          sapphire = p.accentDark;
-          lavender = p.accentLight;
+          mauve = p.accent;
+          blue = p.blue;
+          sapphire = p.blueBright;
+          lavender = p.text;
           rosewater = p.textBright;
 
-          mauve = p.magenta;
           pink = p.magentaBright;
           flamingo = p.magentaBright;
 
           red = p.critical;
-          maroon = p.criticalBright;
-          peach = p.warningBright;
-          yellow = p.warning;
+          maroon = p.cyanBright;
+          peach = p.magenta;
+          yellow = p.warningBright;
           green = p.success;
           teal = p.cyan;
           sky = p.blueBright;
