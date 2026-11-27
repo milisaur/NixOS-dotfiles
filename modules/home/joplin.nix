@@ -2,6 +2,10 @@
   p = import ./palette.nix;
   mix = a: b: pct: "color-mix(in srgb, ${a} ${toString pct}%, ${b})";
 
+  fontsFrom = [''"Noto Sans"'' ''"Roboto Mono"'' ''"JetBrains Mono"''];
+  fontsTo = [''"${p.font}"'' ''"${p.font}"'' ''"${p.font}"''];
+  read = file: builtins.replaceStrings fontsFrom fontsTo (builtins.readFile file);
+
   vars = ''
 
     :root {
@@ -39,6 +43,9 @@
       --light: ${p.text};
       --lighter-grey: ${p.subtext};
       --light-grey: ${mix p.subtext p.bg 60};
+
+      --font-face: "${p.font}", monospace;
+      --font-mono: "${p.font}", monospace;
     }
   '';
 
@@ -81,8 +88,8 @@
   '';
 in {
   xdg.configFile."joplin-desktop/userchrome.css".text =
-    builtins.readFile ./joplin/userchrome.css + vars + chromeExtra;
+    read ./joplin/userchrome.css + vars + chromeExtra;
 
   xdg.configFile."joplin-desktop/userstyle.css".text =
-    builtins.readFile ./joplin/userstyle.css + vars + styleExtra;
+    read ./joplin/userstyle.css + vars + styleExtra;
 }

@@ -12,6 +12,8 @@ in {
     ];
 
     config = {
+      osd-font = p.font;
+
       # Hardware-accelerated decoding
       hwdec = "auto";
 
