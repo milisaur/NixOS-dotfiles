@@ -1,5 +1,17 @@
 {config, ...}: {
   home.sessionVariables.MANPAGER = "nvim +Man!";
+  programs.kitty = {
+    settings = {
+      allow_remote_control = "socket-only";
+      listen_on = "unix:\${XDG_RUNTIME_DIR}/kitty";
+      shell_integration = "enabled";
+    };
+    extraConfig = ''
+      action_alias kitty_scrollback_nvim kitten ${config.programs.nixvim.plugins.kitty-scrollback.package}/python/kitty_scrollback_nvim.py
+      map kitty_mod+h kitty_scrollback_nvim
+      map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+    '';
+  };
   programs.nixvim = {
     defaultEditor = true;
     viAlias = true;
@@ -11,6 +23,8 @@
       enable = true;
       settings.open_for_directories = true;
     };
+
+    plugins.kitty-scrollback.enable = true;
 
     keymaps = [
       {
