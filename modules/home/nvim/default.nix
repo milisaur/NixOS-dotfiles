@@ -104,13 +104,16 @@ in {
         settings = {
           size = 50;
           direction = "vertical";
-          open_mapping = "[[<c-\\>]]";
+          open_mapping = {
+            __raw = "'<c-t>'";
+          };
+          insert_mappings = false;
+          terminal_mappings = false;
           hide_numbers = true;
           shade_filetypes = {};
           shade_terminals = true;
           shading_factor = 2;
           start_in_insert = true;
-          insert_mappings = true;
           persist_size = true;
           persist_mode = true;
           close_on_exit = true;
