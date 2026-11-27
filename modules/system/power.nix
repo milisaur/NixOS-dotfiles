@@ -8,11 +8,6 @@
   # Do not enable power-profiles-daemon together with TLP.
   services.power-profiles-daemon.enable = lib.mkForce false;
 
-  services.udev.extraRules = ''
-    # Force TLP to re-apply power profile when AC state changes.
-    ACTION=="change", SUBSYSTEM=="power_supply", RUN+="${pkgs.tlp}/bin/tlp auto"
-  '';
-
   services.tlp = {
     enable = true;
 

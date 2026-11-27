@@ -8,7 +8,6 @@
   home.packages = with pkgs; [
     # Git
     git
-    git-crypt
     gh
     lazygit
 

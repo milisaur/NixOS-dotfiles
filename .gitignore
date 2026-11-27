@@ -16,6 +16,5 @@ Thumbs.db
 .direnv
 .envrc
 
-# secrets
-.secrets/
+# wallpapers
 /assets/wallpapers/
