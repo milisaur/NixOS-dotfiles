@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  p = import ./palette.nix;
+  hex = c: builtins.substring 1 6 c;
+in {
   programs.mpv = {
     enable = true;
 
@@ -24,6 +27,18 @@
       # Prefer German/English audio and subtitles
       alang = "de,deu,ger,en,eng";
       slang = "de,deu,ger,en,eng";
+    };
+
+    scriptOpts.uosc = {
+      color = builtins.concatStringsSep "," [
+        "foreground=${hex p.accent}"
+        "foreground_text=${hex p.bg}"
+        "background=${hex p.bg}"
+        "background_text=${hex p.text}"
+        "curtain=${hex p.bg}"
+        "success=${hex p.success}"
+        "error=${hex p.critical}"
+      ];
     };
   };
 

@@ -6,6 +6,9 @@
   text = "#ede0d4";
   textBright = "#fff4ea";
   subtext = "#b8a89a";
+  subtextDim = "#96897e";
+  muted = "#746962";
+  mutedDark = "#534a45";
   accent = "#ff7a1a";
   accentDark = "#e8701e";
   accentLight = "#ffb070";

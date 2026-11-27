@@ -26,11 +26,38 @@ in {
         flavour = "frappe";
         transparent_background = true;
         color_overrides.frappe = {
+          crust = p.bg;
+          mantle = p.bg;
+          base = p.bg;
+
+          surface0 = p.surface;
+          surface1 = p.overlay;
+          surface2 = p.surfaceBright;
+
+          overlay0 = p.mutedDark;
+          overlay1 = p.muted;
+          overlay2 = p.subtextDim;
+
+          text = p.text;
+          subtext1 = p.subtext;
+          subtext0 = p.subtextDim;
+
           blue = p.accent;
           sapphire = p.accentDark;
           lavender = p.accentLight;
-          text = p.text;
-          subtext1 = p.subtext;
+          rosewater = p.textBright;
+
+          mauve = p.magenta;
+          pink = p.magentaBright;
+          flamingo = p.magentaBright;
+
+          red = p.critical;
+          maroon = p.criticalBright;
+          peach = p.warningBright;
+          yellow = p.warning;
+          green = p.success;
+          teal = p.cyan;
+          sky = p.blueBright;
         };
         integrations = {
           treesitter = true;
