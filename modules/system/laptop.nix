@@ -32,10 +32,8 @@
     echo "$STATE" > "$STATE_FILE"
 
     if [ "$STATE" = "discharging" ]; then
-      ${pkgs.tlp}/bin/tlp bat || true
       ${pkgs.brightnessctl}/bin/brightnessctl set 50% || true
     else
-      ${pkgs.tlp}/bin/tlp ac || true
       ${pkgs.brightnessctl}/bin/brightnessctl set 80% || true
     fi
   '';
