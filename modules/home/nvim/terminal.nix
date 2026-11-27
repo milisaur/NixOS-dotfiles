@@ -1,4 +1,5 @@
 {config, ...}: {
+  home.sessionVariables.MANPAGER = "nvim +Man!";
   programs.nixvim = {
     defaultEditor = true;
     viAlias = true;
