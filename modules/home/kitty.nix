@@ -5,7 +5,7 @@ in {
     enable = true;
 
     settings = {
-      font_family = "JetBrainsMono Nerd Font";
+      font_family = p.font;
       font_size = 10;
       modify_font = "cell_height 140%";
       enable_audio_bell = false;

@@ -17,7 +17,7 @@ in {
 
       default-timeout = 5000;
 
-      font = "JetBrainsMono Nerd Font 11";
+      font = "${p.font} 11";
 
       icons = 1;
       max-icon-size = 32;

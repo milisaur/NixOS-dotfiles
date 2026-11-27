@@ -1,17 +1,19 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  p = import ./palette.nix;
+in {
   gtk.font = {
-    name = "JetBrainsMono Nerd Font";
+    name = p.font;
     size = 10;
-    package = pkgs.nerd-fonts.jetbrains-mono;
+    package = pkgs.nerd-fonts.${p.fontPackage};
   };
 
   dconf.settings."org/gnome/desktop/interface" = {
-    font-name = "JetBrainsMono Nerd Font 10";
-    document-font-name = "JetBrainsMono Nerd Font 10";
-    monospace-font-name = "JetBrainsMono Nerd Font 10";
+    font-name = "${p.font} 10";
+    document-font-name = "${p.font} 10";
+    monospace-font-name = "${p.font} 10";
   };
 
-  programs.zathura.options.font = "JetBrainsMono Nerd Font 10";
+  programs.zathura.options.font = "${p.font} 10";
 
-  wayland.windowManager.hyprland.settings.group.groupbar.font_family = "JetBrainsMono Nerd Font";
+  wayland.windowManager.hyprland.settings.group.groupbar.font_family = p.font;
 }

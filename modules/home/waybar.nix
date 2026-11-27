@@ -102,7 +102,7 @@ in {
 
     style = ''
       * {
-        font-family: "JetBrainsMono Nerd Font";
+        font-family: "${p.font}";
         font-size: 13px;
         min-height: 0;
         border: none;

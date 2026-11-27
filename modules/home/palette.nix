@@ -25,4 +25,5 @@
   cyan = "#89b482";
   cyanBright = "#a6cba0";
   font = "JetBrainsMono Nerd Font";
+  fontPackage = "jetbrains-mono";
 }

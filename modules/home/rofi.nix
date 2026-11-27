@@ -7,6 +7,7 @@
       fg: ${p.text};
       fg-alt: ${p.subtext};
       accent: ${p.accent};
+            font: "${p.font} 12";
     }
   '';
 in {

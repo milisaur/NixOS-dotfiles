@@ -1,7 +1,9 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  p = import ../home/palette.nix;
+in {
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
+      nerd-fonts.${p.fontPackage}
       nerd-fonts.iosevka-term
       nerd-fonts.monaspace
       nerd-fonts.commit-mono
@@ -13,9 +15,9 @@
 
     fontconfig = {
       defaultFonts = {
-        monospace = ["JetBrainsMono Nerd Font"];
-        sansSerif = ["JetBrainsMono Nerd Font"];
-        serif = ["JetBrainsMono Nerd Font"];
+        monospace = [p.font];
+        sansSerif = [p.font];
+        serif = [p.font];
         emoji = ["Noto Color Emoji"];
       };
 
@@ -25,7 +27,7 @@
         <fontconfig>
           <match target="pattern">
             <edit name="family" mode="prepend" binding="strong">
-              <string>JetBrainsMono Nerd Font</string>
+              <string>${p.font}</string>
             </edit>
           </match>
         </fontconfig>
