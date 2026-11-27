@@ -1,9 +1,12 @@
 {
   config,
   pkgs,
+  lib,
   hostName,
   ...
 }: let
+  p = import ../palette.nix;
+  hex = lib.removePrefix "#";
   extension =
     if hostName == "ankylosaurus"
     then "jpg"
@@ -37,9 +40,11 @@ in {
       size = 300, 55
       outline_thickness = 2
 
-      outer_color = rgba(255,255,255,0.2)
-      inner_color = rgba(0,0,0,0.4)
-      font_color = rgba(255,255,255,1)
+      outer_color = rgb(${hex p.accent})
+      inner_color = rgba(${hex p.bg}cc)
+      font_color = rgb(${hex p.text})
+      check_color = rgb(${hex p.accentLight})
+      fail_color = rgb(${hex p.critical})
 
       placeholder_text = <i>Password</i>
       fade_on_empty = false

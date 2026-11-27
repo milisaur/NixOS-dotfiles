@@ -2,7 +2,9 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  p = import ../palette.nix;
+in {
   imports = [
     ./lsp.nix
     ./completion.nix
@@ -23,6 +25,13 @@
       settings = {
         flavour = "frappe";
         transparent_background = true;
+        color_overrides.frappe = {
+          blue = p.accent;
+          sapphire = p.accentDark;
+          lavender = p.accentLight;
+          text = p.text;
+          subtext1 = p.subtext;
+        };
         integrations = {
           treesitter = true;
           gitsigns = true;

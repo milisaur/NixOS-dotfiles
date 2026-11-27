@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  p = import ../palette.nix;
+  hex = lib.removePrefix "#";
+in {
   home.packages = [
     (pkgs.writeShellScriptBin "scratchpad-toggle" ''
       if hyprctl clients | grep -q "class: scratchpad"; then
@@ -52,6 +59,8 @@
         gaps_out = 10;
         border_size = 2;
         layout = "dwindle";
+        "col.active_border" = "rgb(${hex p.accent}) rgb(${hex p.accentLight}) 45deg";
+        "col.inactive_border" = "rgb(${hex p.overlay})";
       };
 
       decoration = {

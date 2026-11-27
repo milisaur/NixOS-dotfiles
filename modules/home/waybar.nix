@@ -1,4 +1,5 @@
 {pkgs, ...}: let
+  p = import ./palette.nix;
   generationScript = pkgs.writeShellApplication {
     name = "waybar-generation";
     runtimeInputs = [pkgs.coreutils];
@@ -106,72 +107,74 @@ in {
         min-height: 0;
         border: none;
         border-radius: 0;
-       }
+      }
 
-       window#waybar {
-         background: rgba(15, 15, 15, 0.88);
-         color: #e6e6e6;
-         margin: 6px 10px;
-       }
+      window#waybar {
+        background: alpha(${p.bg}, 0.88);
+        color: ${p.text};
+        margin: 6px 10px;
+      }
 
-       #workspaces {
+      #workspaces {
         margin: 6px 8px;
-       }
+      }
 
-       #workspaces button {
+      #workspaces button {
         padding: 0 12px;
         margin: 0 5px;
         background: transparent;
-        color: #bdbdbd;
+        color: ${p.subtext};
         border-radius: 10px;
       }
 
-       #workspaces button.active {
-        background: rgba(255, 255, 255, 0.18);
-        color: #ffffff;
+      #workspaces button.active {
+        background: alpha(${p.accent}, 0.22);
+        color: ${p.accentLight};
       }
 
-       #workspaces button:hover {
-         background: rgba(255, 255, 255, 0.08);
-         color: #ffffff;
-       }
+      #workspaces button:hover {
+        background: alpha(${p.accent}, 0.10);
+        color: ${p.text};
+      }
 
-       #clock,
-       #network,
-       #pulseaudio,
-       #custom-nixos-generation,
-       #cpu,
-       #memory,
-       #battery,
-       #tray {
-         margin: 6px 6px;
-         padding: 0 16px;
-         border-radius: 10px;
-         background: rgba(255, 255, 255, 0.08);
+      #clock,
+      #network,
+      #pulseaudio,
+      #custom-nixos-generation,
+      #cpu,
+      #memory,
+      #battery,
+      #tray {
+        margin: 6px 6px;
+        padding: 0 16px;
+        border-radius: 10px;
+        background: alpha(${p.surface}, 0.9);
       }
 
       #clock {
         font-weight: 600;
-       }
+        color: ${p.accent};
+      }
 
-       #battery.warning {
-         color: #ffcc66;
-       }
+      #battery.warning {
+        color: ${p.warning};
+      }
 
       #battery.critical {
-         color: #ff6b6b;
-       }
+        color: ${p.critical};
+      }
 
-       #battery.charging {
-         color: #8bd5ca;
-       }
+      #battery.charging {
+        color: ${p.success};
+      }
 
-       tooltip {
-         background: rgba(30, 30, 30, 0.95);
-         color: #ffffff;
-         border-radius: 8px;
-         padding: 8px;
-       }
+      tooltip {
+        background: alpha(${p.surface}, 0.95);
+        color: ${p.text};
+        border: 1px solid ${p.accent};
+        border-radius: 8px;
+        padding: 8px;
+      }
     '';
   };
 }

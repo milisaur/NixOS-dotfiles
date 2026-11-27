@@ -1,11 +1,13 @@
-{...}: {
+{...}: let
+  p = import ./palette.nix;
+in {
   services.mako = {
     enable = true;
 
     settings = {
-      background-color = "#0f0f0fdd";
-      text-color = "#e6e6e6";
-      border-color = "#89b4fa";
+      background-color = "${p.bg}dd";
+      text-color = p.text;
+      border-color = p.accent;
 
       border-size = 2;
       border-radius = 12;

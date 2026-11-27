@@ -1,7 +1,18 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  p = import ./palette.nix;
+  colors = ''
+    * {
+      bg: ${p.bg}eb;
+      bg-alt: ${p.surface};
+      fg: ${p.text};
+      fg-alt: ${p.subtext};
+      accent: ${p.accent};
+    }
+  '';
+in {
   programs.rofi = {
     enable = true;
-    theme = ./rofi/theme.rasi;
+    theme = "${pkgs.writeText "milisaur.rasi" (colors + builtins.readFile ./rofi/theme.rasi)}";
 
     extraConfig = {
       modi = "drun,run,window";
