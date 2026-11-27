@@ -2,6 +2,12 @@
   fonts = {
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka-term
+      nerd-fonts.monaspace
+      nerd-fonts.commit-mono
+      nerd-fonts.fira-code
+      nerd-fonts.caskaydia-cove
+      nerd-fonts.blex-mono
       noto-fonts-color-emoji
     ];
 

@@ -34,6 +34,16 @@
     @define-color dialog_fg_color ${p.text};
     @define-color popover_bg_color ${p.surface};
     @define-color popover_fg_color ${p.text};
+        @define-color theme_bg_color ${p.bg};
+    @define-color theme_fg_color ${p.text};
+    @define-color theme_base_color ${p.surface};
+    @define-color theme_text_color ${p.text};
+    @define-color theme_selected_bg_color ${p.accent};
+    @define-color theme_selected_fg_color ${p.bg};
+    @define-color theme_unfocused_selected_bg_color ${p.accentDark};
+    @define-color theme_unfocused_selected_fg_color ${p.bg};
+    @define-color borders ${p.overlay};
+    @define-color unfocused_borders ${p.overlay};
   '';
 
   vars = ''
@@ -73,6 +83,7 @@ in {
       color-scheme = "prefer-dark";
       gtk-theme = "adw-gtk3-dark";
       icon-theme = "Papirus-Dark";
+      accent-color = "orange";
     };
   };
 
@@ -87,7 +98,7 @@ in {
 
     iconTheme = {
       name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      package = pkgs.papirus-icon-theme.override {color = "orange";};
     };
 
     gtk3.extraCss = colors;
