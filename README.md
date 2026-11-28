@@ -2,8 +2,7 @@
 
 A declarative NixOS configuration for multiple machines, built with flakes and Home Manager.
 
-The repository contains both the system and the user configuration. 
-Host-specific settings are kept separate from shared modules, so each machine only selects the parts it needs.
+The repository contains both the system and the user configuration. Host-specific settings are kept separate from shared modules, so each machine only selects the parts it needs.
 
 ## Project Status
 
