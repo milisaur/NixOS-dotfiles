@@ -101,80 +101,80 @@ in {
     };
 
     style = ''
-      * {
-        font-family: "${p.font}";
-        font-size: 13px;
-        min-height: 0;
-        border: none;
-        border-radius: 0;
-      }
+            * {
+              font-family: "${p.font}";
+      font-size: ${toString p.fontSize.ui}px;
+              min-height: 0;
+              border: none;
+              border-radius: 0;
+            }
 
-      window#waybar {
-        background: alpha(${p.bg}, 0.88);
-        color: ${p.text};
-        margin: 6px 10px;
-      }
+            window#waybar {
+              background: alpha(${p.bg}, ${toString p.opacity.panel});
+              color: ${p.text};
+              margin: 6px 10px;
+            }
 
-      #workspaces {
-        margin: 6px 8px;
-      }
+            #workspaces {
+              margin: 6px 8px;
+            }
 
-      #workspaces button {
-        padding: 0 12px;
-        margin: 0 5px;
-        background: transparent;
-        color: ${p.subtext};
-        border-radius: 10px;
-      }
+            #workspaces button {
+              padding: 0 12px;
+              margin: 0 5px;
+              background: transparent;
+              color: ${p.subtext};
+              border-radius: ${toString p.radius.md}px;
+            }
 
-      #workspaces button.active {
-        background: alpha(${p.accent}, 0.22);
-        color: ${p.accentLight};
-      }
+            #workspaces button.active {
+              background: alpha(${p.accent}, 0.22);
+              color: ${p.accentLight};
+            }
 
-      #workspaces button:hover {
-        background: alpha(${p.accent}, 0.10);
-        color: ${p.text};
-      }
+            #workspaces button:hover {
+              background: alpha(${p.accent}, 0.10);
+              color: ${p.text};
+            }
 
-      #clock,
-      #network,
-      #pulseaudio,
-      #custom-nixos-generation,
-      #cpu,
-      #memory,
-      #battery,
-      #tray {
-        margin: 6px 6px;
-        padding: 0 16px;
-        border-radius: 10px;
-        background: alpha(${p.surface}, 0.9);
-      }
+            #clock,
+            #network,
+            #pulseaudio,
+            #custom-nixos-generation,
+            #cpu,
+            #memory,
+            #battery,
+            #tray {
+              margin: 6px 6px;
+              padding: 0 16px;
+              border-radius: ${toString p.radius.md}px;
+              background: alpha(${p.surface}, 0.9);
+            }
 
-      #clock {
-        font-weight: 600;
-        color: ${p.accent};
-      }
+            #clock {
+              font-weight: 600;
+              color: ${p.accent};
+            }
 
-      #battery.warning {
-        color: ${p.warning};
-      }
+            #battery.warning {
+              color: ${p.warning};
+            }
 
-      #battery.critical {
-        color: ${p.critical};
-      }
+            #battery.critical {
+              color: ${p.critical};
+            }
 
-      #battery.charging {
-        color: ${p.success};
-      }
+            #battery.charging {
+              color: ${p.success};
+            }
 
-      tooltip {
-        background: alpha(${p.surface}, 0.95);
-        color: ${p.text};
-        border: 1px solid ${p.accent};
-        border-radius: 8px;
-        padding: 8px;
-      }
+            tooltip {
+              background: alpha(${p.surface}, 0.95);
+              color: ${p.text};
+              border: 1px solid ${p.accent};
+              border-radius: ${toString p.radius.sm}px;
+              padding: 8px;
+            }
     '';
   };
 }

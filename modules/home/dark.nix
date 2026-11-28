@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   p = import ./palette.nix;
 
   qtRow = colors: builtins.concatStringsSep ", " colors;
@@ -183,6 +187,8 @@ in {
       icon-theme = "Papirus-Dark";
       accent-color = "orange";
     };
+    settings."org/gtk/settings/file-chooser".window-size = lib.hm.gvariant.mkTuple [1000 650];
+    settings."org/gtk/gtk4/settings/file-chooser".window-size = lib.hm.gvariant.mkTuple [1000 650];
   };
 
   gtk = {

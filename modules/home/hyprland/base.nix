@@ -49,18 +49,21 @@ in {
         "match:class ^(pavucontrol)$, float true"
         "match:class ^(nm-connection-editor)$, float true"
 
+        "match:class ^(xdg-desktop-portal-gtk)$, float true, size 60% 70%, center true"
+        "match:title ^(Open File|Open Files|Open Folder|Save File|Save As|Select.*|File Upload|Datei öffnen|Dateien öffnen|Datei speichern|Speichern unter|Ordner auswählen).*$, float true, size 60% 70%, center true"
+
         "match:class ^(Mars)$, float true, center true, size 1400 900"
 
         "match:class ^(scratchpad)$, workspace special:scratchpad silent, float true, size 1200 700, center true"
       ];
 
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
-        border_size = 2;
         layout = "dwindle";
         "col.active_border" = "rgb(${hex p.accent}) rgb(${hex p.accentLight}) 45deg";
         "col.inactive_border" = "rgb(${hex p.overlay})";
+        gaps_in = p.gap.inner;
+        gaps_out = p.gap.outer;
+        border_size = p.border;
       };
 
       decoration = {

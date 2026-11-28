@@ -4,5 +4,6 @@
     mangohud
     goverlay
     mumble
+    dosbox
   ];
 }

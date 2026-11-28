@@ -26,4 +26,23 @@
   cyanBright = "#a6cba0";
   font = "JetBrainsMono Nerd Font";
   fontPackage = "jetbrains-mono";
+
+  radius = {
+    sm = 8;
+    md = 10;
+    lg = 14;
+  };
+  gap = {
+    inner = 5;
+    outer = 10;
+  };
+  border = 2;
+  opacity = {
+    panel = 0.88;
+    terminal = 0.95;
+  };
+  fontSize = {
+    ui = 13;
+    terminal = 10;
+  };
 }
